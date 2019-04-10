@@ -1,0 +1,20 @@
+server:
+  port: 8024
+
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    metadataMap.zone: zone2
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: region-east
+    service-url:
+      zone1: http://${eureka.instance.hostname}:8021/eureka/,http://${eureka.instance.hostname}:8022/eureka/
+      zone2: http://${eureka.instance.hostname}:8023/eureka/,http://${eureka.instance.hostname}:8024/eureka/
+    availability-zones:
+      region-east: zone1,zone2
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    enable-self-preservation: false

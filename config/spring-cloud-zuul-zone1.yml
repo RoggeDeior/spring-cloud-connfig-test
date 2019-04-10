@@ -1,0 +1,15 @@
+server:
+  port: 8041
+eureka:
+  instance:
+    hostname: localhost
+    metadataMap.zone: zone1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: region-east
+    service-url:
+      zone1: http://${eureka.instance.hostname}:8021/eureka/,http://${eureka.instance.hostname}:8022/eureka/
+      zone2: http://${eureka.instance.hostname}:8023/eureka/,http://${eureka.instance.hostname}:8024/eureka/
+    availability-zones:
+      region-east: zone1,zone2
